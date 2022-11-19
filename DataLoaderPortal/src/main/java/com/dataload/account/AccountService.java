@@ -20,9 +20,9 @@ public class AccountService {
 			if (details != null) {
 				if (!details.getPassword().equals(loginDetails.getPassword()))
 					return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.WRONG_PASSWORD);
-				else
-					return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.USERNAME_DOESNT_EXIST);
 			}
+			else
+				return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.USERNAME_DOESNT_EXIST);
 		} catch (Exception e) {
 			throw new LoadExceptionHandler("Exception occured during login", e);
 		}

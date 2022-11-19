@@ -97,4 +97,7 @@ public class UserDetails {
 		this.patientDrugName = patientDrugName;
 	}
 
+	public UserDetails() {
+	}
+
 }
