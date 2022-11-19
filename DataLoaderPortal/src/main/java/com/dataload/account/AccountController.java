@@ -18,14 +18,12 @@ public class AccountController {
 
 	@PostMapping(value = "/login", headers = "Accept=application/json")
 	public BaseResponse login(@RequestBody LoginDetails loginDetails) {
-
-		BaseResponse userDetails = null;
 		try {
-			userDetails = service.login(loginDetails);
+			return service.login(loginDetails);
 		} catch (Exception e) {
 			System.out.print("Exception occured while login using password the user controller");
 		}
-		return userDetails;
+		return new BaseResponse(500, "Internal server error");
 	}
 
 }
