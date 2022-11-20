@@ -19,6 +19,7 @@ public class UserDetails {
 	private String patientContactNumber;
 	private long patientDrugId;
 	private String patientDrugName;
+	private String status;
 
 	public int getPatientId() {
 		return patientId;
@@ -84,8 +85,17 @@ public class UserDetails {
 		this.patientDrugName = patientDrugName;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public UserDetails(int patientId, String patientName, String patientAddress, String patientDateOfBirth,
-			String patientEmail, String patientContactNumber, long patientDrugId, String patientDrugName) {
+			String patientEmail, String patientContactNumber, long patientDrugId, String patientDrugName,
+			String status) {
 		super();
 		this.patientId = patientId;
 		this.patientName = patientName;
@@ -95,6 +105,7 @@ public class UserDetails {
 		this.patientContactNumber = patientContactNumber;
 		this.patientDrugId = patientDrugId;
 		this.patientDrugName = patientDrugName;
+		this.status = status;
 	}
 
 	public UserDetails() {
