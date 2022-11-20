@@ -32,6 +32,16 @@ public class DataController {
 		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
 	}
 
+	@GetMapping(value = "/getpatients", headers = "Accept=application/json")
+	public BaseResponse getPatientDetails() {
+		try {
+			return service.getPatientDetails();
+		} catch (Exception e) {
+			System.out.print("Exception occured while fetching data controller");
+		}
+		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
+	}
+
 	@GetMapping("/retrive/{patientName}")
 	public BaseResponse searchForPatient(@PathVariable String patientName) {
 		try {

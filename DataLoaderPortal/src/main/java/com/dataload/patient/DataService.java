@@ -54,4 +54,16 @@ public class DataService {
 		return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.SUCESS);
 	}
 
+	public BaseResponse getPatientDetails() throws LoadExceptionHandler {
+		try {
+			List<UserDetails> details = dao.findAll();
+			if (details != null) {
+				return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.SUCESS, details);
+			}
+		} catch (Exception e) {
+			throw new LoadExceptionHandler("Exception occured getting patinet data", e);
+		}
+		return new BaseResponse(ResponseConstants.STATUS200, ResponseConstants.FAIL);
+	}
+
 }
