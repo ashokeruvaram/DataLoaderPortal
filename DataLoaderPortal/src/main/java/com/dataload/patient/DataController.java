@@ -23,43 +23,43 @@ public class DataController {
 	private DataService service;
 
 	@PostMapping(value = "/load/patientdata", headers = "Accept=application/json")
-	public BaseResponse loadPatientData(@RequestBody List<UserDetails> userDetails) {
+	public BaseResponse<Void> loadPatientData(@RequestBody List<UserDetails> userDetails) {
 		try {
 			return service.loadPatientData(userDetails);
 		} catch (Exception e) {
 			System.out.print("Exception occured while loading the user data controller");
 		}
-		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
+		return new BaseResponse<Void>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
 	}
 
 	@GetMapping(value = "/getpatients", headers = "Accept=application/json")
-	public BaseResponse getPatientDetails() {
+	public BaseResponse<List<UserDetails>> getPatientDetails() {
 		try {
 			return service.getPatientDetails();
 		} catch (Exception e) {
 			System.out.print("Exception occured while fetching data controller");
 		}
-		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
+		return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
 	}
 
 	@GetMapping("/retrive/{patientName}")
-	public BaseResponse searchForPatient(@PathVariable String patientName) {
+	public BaseResponse<List<UserDetails>> searchForPatient(@PathVariable String patientName) {
 		try {
 			return service.searchForPatient(patientName);
 		} catch (Exception e) {
 			System.out.print("Exception occured while searching for patient controller");
 		}
-		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
+		return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
 	}
 
 	@PutMapping("/updatepatient")
-	public BaseResponse updatePatient(@RequestBody UserDetails userDetails) {
+	public BaseResponse<Void> updatePatient(@RequestBody UserDetails userDetails) {
 		try {
 			return service.updatePatient(userDetails);
 		} catch (Exception e) {
 			System.out.print("Exception occured while updating the patient detils controller");
 		}
-		return new BaseResponse(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
+		return new BaseResponse<Void>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
 	}
 
 }

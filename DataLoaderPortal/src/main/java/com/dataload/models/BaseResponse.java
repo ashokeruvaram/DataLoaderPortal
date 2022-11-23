@@ -1,17 +1,15 @@
 package com.dataload.models;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-public class BaseResponse {
+public class BaseResponse<T> {
 
 	private int statusCode;
 	private String statusMessage;
 
 	@JsonInclude(value = Include.NON_NULL)
-	private List<UserDetails> userDetils;
+	private T data;
 
 	public int getStatusCode() {
 		return statusCode;
@@ -29,19 +27,19 @@ public class BaseResponse {
 		this.statusMessage = statusMessage;
 	}
 
-	public List<UserDetails> getUserDetils() {
-		return userDetils;
-	}
-
-	public void setUserDetils(List<UserDetails> userDetils) {
-		this.userDetils = userDetils;
-	}
-
-	public BaseResponse(int statusCode, String statusMessage, List<UserDetails> details) {
+	public BaseResponse(int statusCode, String statusMessage, T data) {
 		super();
 		this.statusCode = statusCode;
 		this.statusMessage = statusMessage;
-		this.userDetils = details;
+		this.data = data;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
 	}
 
 	public BaseResponse(int statusCode, String statusMessage) {

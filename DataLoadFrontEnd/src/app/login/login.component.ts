@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponseConstants } from '../constants/response-constants';
-import { LoginDetails } from '../entitys/login-details';
 import { LoginServices } from './services.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoadService } from '../loaddata/load.service';
 import { Router } from '@angular/router';
+import { Login } from '../models/login';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
 
   constructor(public service: LoginServices, private router: Router) { }
 
-  loginDetails: LoginDetails
+  loginDetails: Login
   ngOnInit(): void {
-    this.loginDetails = new LoginDetails;
+    this.loginDetails = new Login;
   }
   login() {
     console.info("login request " + JSON.stringify(this.loginDetails))
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
       alert(data.statusMessage);
       if (data.statusCode === ResponseConstants.SUCCESS) {
         // localStorage.setItem("details", JSON.stringify(data));
-        this.router.navigate(['/login']);
-        
+        this.router.navigate(['/load']);
+
       }
     },
       error => console.info(error));
