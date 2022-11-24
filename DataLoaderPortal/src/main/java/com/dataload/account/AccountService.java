@@ -22,14 +22,14 @@ public class AccountService {
 
 	public BaseResponse<LoginDetails> login(LoginDetails loginDetails) throws LoadExceptionHandler {
 		try {
-			Optional<LoginDetails> detailsFromDb = dao.getByUserName(loginDetails.getUserName());
+			Optional<LoginDetails> detailsFromDb = dao.findByUserName(loginDetails.getUserName());
 			if (detailsFromDb.isPresent()) {
 				LoginDetails details = detailsFromDb.get();
 				return PasswordEncDec.bCrypter(loginDetails.getPassword(), details.getPassword())
 						? new BaseResponse<LoginDetails>(ResponseConstants.STATUS200, ResponseConstants.LOGIN_SUCCESS,
 								new LoginDetails(details.getId(), details.getUserName(),
 										jwtUtil.generateToken(details.getUserName())))
-						: new BaseResponse<LoginDetails>(ResponseConstants.STATUS200, ResponseConstants.WRONG_PASSWORD);
+						: new BaseResponse<LoginDetails>(ResponseConstants.STATUS401, ResponseConstants.WRONG_PASSWORD);
 			} else
 				return new BaseResponse<LoginDetails>(ResponseConstants.STATUS401,
 						ResponseConstants.USERNAME_DOESNT_EXIST);
@@ -42,7 +42,7 @@ public class AccountService {
 		loginDetails.setPassword(PasswordEncDec.encryptingPassword(loginDetails.getPassword()));
 		try {
 			if (loginDetails != null) {
-				Optional<LoginDetails> detailsFromDb = dao.getByUserName(loginDetails.getUserName());
+				Optional<LoginDetails> detailsFromDb = dao.findByUserName(loginDetails.getUserName());
 				if (detailsFromDb.isPresent())
 					return new BaseResponse<Void>(ResponseConstants.STATUS401, ResponseConstants.ALREADY_REGISTERED);
 				dao.save(loginDetails);

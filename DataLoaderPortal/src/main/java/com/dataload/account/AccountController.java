@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dataload.constants.ResponseConstants;
 import com.dataload.models.BaseResponse;
 import com.dataload.models.LoginDetails;
+import com.dataload.utils.LoadExceptionHandler;
 
 @RestController
 @RequestMapping("account")
@@ -23,7 +24,7 @@ public class AccountController {
 	public BaseResponse<LoginDetails> login(@RequestBody LoginDetails loginDetails) {
 		try {
 			return service.login(loginDetails);
-		} catch (Exception e) {
+		} catch (LoadExceptionHandler e) {
 			System.out.print("Exception occured while login using password the user controller");
 		}
 		return new BaseResponse<LoginDetails>(500, "Internal server error");
@@ -35,7 +36,7 @@ public class AccountController {
 		BaseResponse<Void> response = new BaseResponse<Void>(ResponseConstants.STATUS400, ResponseConstants.FAIL);
 		try {
 			response = service.registerAdmin(loginDetails);
-		} catch (Exception e) {
+		} catch (LoadExceptionHandler e) {
 			logger.info("failed to register", e);
 		}
 		return response;

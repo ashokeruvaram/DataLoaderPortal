@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UrlConstants } from '../constants/url-constants';
 import { BaseResponse } from '../models/base-response';
@@ -13,7 +13,12 @@ export class LoadService {
   }
   getPatientData() {
     console.info("inside author service register: ");
-    return this.http.get<BaseResponse>(UrlConstants.GETPATIENTS);
+    return this.http.get<BaseResponse>(UrlConstants.GETPATIENTS, {
+      headers: new HttpHeaders({
+        'Authorization': "Bearer " + localStorage.getItem("token"),
+        'Content-Type': 'application/json',
+      })
+    });
   }
 
 }

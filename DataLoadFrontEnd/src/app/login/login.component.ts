@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit {
   login() {
     console.info("login request " + JSON.stringify(this.loginDetails))
     this.service.Login(this.loginDetails).subscribe(data => {
-      console.info("response : " + JSON.stringify(data));
+      console.info("response : " + JSON.stringify(data.data));
       alert(data.statusMessage);
       if (data.statusCode === ResponseConstants.SUCCESS) {
-        // localStorage.setItem("details", JSON.stringify(data));
+        localStorage.setItem("token", data.data.token);
         this.router.navigate(['/load']);
 
       }

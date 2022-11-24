@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dataload.constants.ResponseConstants;
 import com.dataload.models.BaseResponse;
 import com.dataload.models.UserDetails;
+import com.dataload.utils.LoadExceptionHandler;
 
 @RestController
 @RequestMapping("/patient")
@@ -26,7 +27,7 @@ public class DataController {
 	public BaseResponse<Void> loadPatientData(@RequestBody List<UserDetails> userDetails) {
 		try {
 			return service.loadPatientData(userDetails);
-		} catch (Exception e) {
+		} catch (LoadExceptionHandler e) {
 			System.out.print("Exception occured while loading the user data controller");
 		}
 		return new BaseResponse<Void>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
@@ -36,7 +37,7 @@ public class DataController {
 	public BaseResponse<List<UserDetails>> getPatientDetails() {
 		try {
 			return service.getPatientDetails();
-		} catch (Exception e) {
+		} catch (LoadExceptionHandler e) {
 			System.out.print("Exception occured while fetching data controller");
 		}
 		return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);
@@ -46,7 +47,7 @@ public class DataController {
 	public BaseResponse<List<UserDetails>> searchForPatient(@PathVariable String patientName) {
 		try {
 			return service.searchForPatient(patientName);
-		} catch (Exception e) {
+		} catch (LoadExceptionHandler e) {
 			System.out.print("Exception occured while searching for patient controller");
 		}
 		return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS500, ResponseConstants.SOMETHING_WRONG);

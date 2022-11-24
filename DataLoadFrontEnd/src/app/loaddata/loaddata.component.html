@@ -15,10 +15,14 @@
                 </div>
             </div>
             <div *ngIf=" table " style="padding-left: 80px;padding-right: 80px;padding-top: 50px; ">
+                <div class="input-group">
+                    <input type="text" style="border-radius: 10px;background-color: white;color: black;text-size-adjust: 5px;">
+                    <button class="btn btn-primary" style="border-radius: 10px;">Search</button>
+                </div>
                 <table class="table table-striped table-dark ">
                     <thead>
                         <tr>
-                            <th scope="col ">#</th>
+                            <th scope="col ">ProfileId</th>
                             <th scope="col ">Name</th>
                             <th scope="col ">Email</th>
                             <th scope="col ">Contact</th>
@@ -31,7 +35,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let details of patients; let i=index ">
-                            <th scope="row ">{{i+1}}</th>
+                            <th scope="row ">{{details.patientId}}</th>
                             <td scope="row ">{{details.patientName}}</td>
                             <td scope="row ">{{details.patientEmail}}</td>
                             <td scope="row ">{{details.patientContactNumber}}</td>

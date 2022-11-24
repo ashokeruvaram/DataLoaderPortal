@@ -19,7 +19,7 @@ export class LoaddataComponent implements OnInit {
     this.loadService.getPatientData().subscribe(data => {
       console.info("response : " + JSON.stringify(data));
       if (data.statusCode === ResponseConstants.SUCCESS)
-        this.patients = data.userDetils;
+        this.patients = data.data;
     },
       error => console.info(error));
   }

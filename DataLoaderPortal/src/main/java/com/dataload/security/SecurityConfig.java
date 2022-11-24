@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/account/login", "/account/register").permitAll()
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/account/login", "/account/register")
+				.permitAll()
 				.antMatchers("/patient/load/patientdata", "/patient/getpatients", "/patient/retrive/{patientName}",
 						"/patient/updatepatient")
 				.authenticated().and().exceptionHandling().and().sessionManagement()
