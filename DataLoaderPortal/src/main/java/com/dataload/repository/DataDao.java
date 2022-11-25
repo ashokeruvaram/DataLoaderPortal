@@ -1,4 +1,4 @@
-package com.dataload.patient;
+package com.dataload.repository;
 
 import java.util.List;
 import java.util.Optional;

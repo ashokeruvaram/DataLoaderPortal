@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import com.dataload.models.UserDetails;
-import com.dataload.patient.DataService;
+import com.dataload.services.DataService;
 
 @Component("asyncExecutor")
 @EnableAsync

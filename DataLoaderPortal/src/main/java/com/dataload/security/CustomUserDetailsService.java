@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.dataload.account.AccountDao;
 import com.dataload.models.LoginDetails;
+import com.dataload.repository.AccountDao;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

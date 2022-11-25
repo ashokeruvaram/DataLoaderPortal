@@ -1,7 +1,9 @@
-package com.dataload.patient;
+package com.dataload.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +13,12 @@ import org.springframework.stereotype.Service;
 import com.dataload.constants.ResponseConstants;
 import com.dataload.models.BaseResponse;
 import com.dataload.models.UserDetails;
+import com.dataload.repository.DataDao;
 import com.dataload.utils.AsyncTaskExecutor;
 import com.dataload.utils.LoadExceptionHandler;
 
 @Service
+@Transactional
 public class DataService {
 
 	@Autowired
@@ -43,7 +47,7 @@ public class DataService {
 				return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS200, ResponseConstants.SUCESS,
 						details.get());
 		} catch (Exception e) {
-			throw new LoadExceptionHandler("Exception occured during data loading", e);
+			throw new LoadExceptionHandler("Exception occured searching the patient", e);
 		}
 		return new BaseResponse<List<UserDetails>>(ResponseConstants.STATUS401, ResponseConstants.NODATA_FOUND);
 	}

@@ -1,6 +1,8 @@
-package com.dataload.account;
+package com.dataload.services;
 
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,11 +10,13 @@ import org.springframework.stereotype.Service;
 import com.dataload.constants.ResponseConstants;
 import com.dataload.models.BaseResponse;
 import com.dataload.models.LoginDetails;
+import com.dataload.repository.AccountDao;
 import com.dataload.security.JwtUtil;
 import com.dataload.security.PasswordEncDec;
 import com.dataload.utils.LoadExceptionHandler;
 
 @Service
+@Transactional
 public class AccountService {
 
 	@Autowired
