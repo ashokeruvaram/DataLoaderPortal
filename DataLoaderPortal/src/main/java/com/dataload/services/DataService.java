@@ -91,4 +91,17 @@ public class DataService {
 
 	}
 
+	public static int addition(int a, int b) {
+		return a + b;
+	}
+
+	public int additionPublic(int a, int b, int c) {
+		return privateAddition(a, b, c);
+	}
+
+	@SuppressWarnings("unused")
+	private int privateAddition(int a, int b, int c) {
+		return a + b + c;
+	}
+
 }
