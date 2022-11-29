@@ -17,7 +17,7 @@ public class UserDetails {
 	private String patientDateOfBirth;
 	private String patientEmail;
 	private String patientContactNumber;
-	private long patientDrugId;
+	private String patientDrugId;
 	private String patientDrugName;
 	private String status;
 
@@ -69,11 +69,11 @@ public class UserDetails {
 		this.patientContactNumber = patientContactNumber;
 	}
 
-	public long getPatientDrugId() {
+	public String getPatientDrugId() {
 		return patientDrugId;
 	}
 
-	public void setPatientDrugId(long patientDrugId) {
+	public void setPatientDrugId(String patientDrugId) {
 		this.patientDrugId = patientDrugId;
 	}
 
@@ -94,7 +94,7 @@ public class UserDetails {
 	}
 
 	public UserDetails(int patientId, String patientName, String patientAddress, String patientDateOfBirth,
-			String patientEmail, String patientContactNumber, long patientDrugId, String patientDrugName,
+			String patientEmail, String patientContactNumber, String patientDrugId, String patientDrugName,
 			String status) {
 		super();
 		this.patientId = patientId;

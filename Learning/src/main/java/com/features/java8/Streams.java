@@ -80,6 +80,8 @@ public class Streams {
 	public void stirngListTOintList() {
 		List<Integer> list = Stream.of("1", "2", "3", "4", "5", "6").map(x -> Integer.valueOf(x))// .filter(null)
 				.collect(Collectors.toList());
+		list = Stream.of("1", "2", "3", "4", "5", "6").map(Integer::valueOf)// .filter(null)
+				.collect(Collectors.toList());
 
 		System.out.println(list);
 //		IntStream stream = IntStream.range(1, 100);
